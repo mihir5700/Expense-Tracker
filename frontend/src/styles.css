@@ -1,8 +1,140 @@
-/* You can add global styles to this file, and also import other style files */
-@import url("./components/login/login.component.css");
+/*
+    Font - #141414
+    Body, icons - #eff6fd
+    Highlighting for buttons, tabs, logo and such things - #0075fe
+    Navbars, cards, tiles - #ffffff
 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Rozha+One&display=swap');
+
+/* You can add global styles to this file, and also import other style files */
+:root {
+    /* Colors */
+    --body-color: #eff6fd;
+    --sidebar-color: white;
+    --primary-color: #0075fe;
+    --font-color: #141414;
+    --border-color: rgba(0, 0, 0, 0.119);
+    --toggle-color: #eff6fd;
+
+    /**/
+    --sidebar-width: 215px;
+    
+    /* Transitions */
+    --tran-01: all 0.2s ease;
+    --tran-02: all 0.3s ease;
+    --tran-03: all 0.4s ease;
+    --tran-04: all 0.5s ease;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
 html, body {
     height: 100%;
-    width: 100%;
-    background-color: rgb(63, 61, 61);
+    background: var(--body-color);
+    font-family: "Public Sans", serif;
 }
+
+.mm-app-container {
+    display: flex;
+    justify-content: start;
+    height: 100%
+}
+
+.mm-app {
+    padding: 50px
+}
+
+/* Side Navigation Bar */
+.et-sidebar {
+    left: 0;
+    height: 100%;
+    width: var(--sidebar-width);
+    padding: 10px 14px;
+    background: var(--sidebar-color);
+    border-right: 0.2px solid var(--border-color);
+}
+
+.et-sidebar .et-header {
+    display: flex;
+    justify-content: center;
+}
+
+.et-sidebar .et-header .et-logo img {
+    height: 80px;
+    width: 80px;
+    padding: 5px;
+    /* border: 0.2px solid var(--border-color); */
+    border-radius: 20px;
+}
+
+/* .et-sidebar .et-header .et-user-box {
+    height: 60px;
+    width: 100%;
+    padding: 5px;
+    margin-left: 2px;
+    border: 0.2px solid var(--border-color);
+    border-radius: 20px;
+} */
+
+.et-sidebar .et-header .et-logo {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.et-sidebar .et-header .et-text-header {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--primary-color);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.et-header {
+    display: flex;
+    justify-content: center;
+}
+
+.et-sidebar .et-tabs-list {
+    list-style: none;
+}
+
+.et-sidebar .et-tabs-list a {
+    height: 45px;
+    font-size: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: 18px;
+    padding-left: 20px;
+    text-decoration: none;
+    color: var(--font-color);
+}
+
+.et-sidebar .et-tab .et-icon {
+    font-size: 20px;
+    margin: 0px 10px;
+}
+
+.et-sidebar .et-tabs-list a:hover {
+    background: var(--body-color);
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+    transition: var(--tran-04);
+}
+
+.et-sidebar .et-tabs-list a:active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+

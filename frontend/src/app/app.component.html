@@ -1,2 +1,49 @@
-<login/>
-<router-outlet />
+<div class="mm-app-container">
+    <div class="et-sidebar">
+        <div class="et-header">
+            <span class="et-logo">
+                <img src="assets/images/logo.png" alt="money-map-logo" srcset="">
+            </span>
+            <!-- <div class="et-user-box">
+                
+            </div> -->
+        </div>
+    
+        <ul class="et-tabs-list">
+            <li class="et-tab">
+                <a routerLink="/" routerLinkActive="active">
+                    <i class='bx bx-home-alt-2 et-icon' ></i>
+                    <span class="et-tab-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="et-tab">
+                <a routerLink="/budget" routerLinkActive="active">
+                    <i class='bx bx-money et-icon'></i>
+                    <span class="et-tab-text">Budget</span>
+                </a>
+            </li>
+            <li class="et-tab">
+                <a routerLink="/category" routerLinkActive="active">
+                    <i class='bx bx-category et-icon' ></i>
+                    <span class="et-tab-text">Category</span>
+                </a>
+            </li>
+            <li class="et-tab">
+                <a routerLink="/mm-active" routerLinkActive="active">
+                    <i class='bx bx-calculator et-icon'></i>
+                    <span class="et-tab-text">Active Tracker</span>
+                </a>
+            </li>
+            <li class="et-tab">
+                <a routerLink="/mm-history" routerLinkActive="active">
+                    <i class='bx bx-history et-icon' ></i>
+                    <span class="et-tab-text">History Tracker</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="mm-app">
+        <router-outlet />
+    </div>
+</div>

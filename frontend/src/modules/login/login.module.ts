@@ -4,14 +4,15 @@ import { LoginComponent } from '../../components/login/login.component';
 
 @NgModule({
   declarations: [
-  ],
-  imports: [
-    CommonModule,
     LoginComponent
   ],
   exports: [
     LoginComponent
-  ]
+  ],
+  imports: [
+    CommonModule
+  ],
+  bootstrap: [LoginComponent]
 })
 
 export class LoginModule { }
