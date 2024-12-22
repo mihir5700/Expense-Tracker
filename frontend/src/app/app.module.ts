@@ -3,7 +3,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MasterTemplateModule } from '../modules/mastertemplate/mastertemplate.module';
 import { BudgetModule } from '../modules/budget/budget.module';
 import { CategoryModule } from '../modules/category/category.module';
 import { ActiveTrackerModule } from '../modules/activetracker/activetracker.module';

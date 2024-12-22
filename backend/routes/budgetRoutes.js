@@ -9,6 +9,6 @@ router.post('/create', budgetsController.createBudget)
 router.patch('/edit', budgetsController.editBudget)
 
 // Get Year Wise Budgets (GET)
-router.get('/get/budgets/:year', budgetsController.getSelectedYearWiseBudgets)
+router.get('/get/:year', budgetsController.getSelectedYearWiseBudgets)
 
 module.exports = router

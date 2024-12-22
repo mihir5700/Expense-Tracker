@@ -10,33 +10,33 @@
         </div>
     
         <ul class="et-tabs-list">
-            <li class="et-tab">
-                <a routerLink="/" routerLinkActive="active">
-                    <i class='bx bx-home-alt-2 et-icon' ></i>
-                    <span class="et-tab-text">Dashboard</span>
+            <li [ngClass]="setActiveTabClass('/home') ? 'et-active-tab' : 'et-tab'">
+                <a routerLink="/home">
+                    <i class='bx bx-home-alt-2 et-icon'></i>
+                    <span class="et-tab-text">Home</span>
                 </a>
             </li>
-            <li class="et-tab">
-                <a routerLink="/budget" routerLinkActive="active">
+            <li [ngClass]="setActiveTabClass('/budget') ? 'et-active-tab' : 'et-tab'">
+                <a routerLink="/budget">
                     <i class='bx bx-money et-icon'></i>
                     <span class="et-tab-text">Budget</span>
                 </a>
             </li>
-            <li class="et-tab">
-                <a routerLink="/category" routerLinkActive="active">
+            <li [ngClass]="setActiveTabClass('/category') ? 'et-active-tab' : 'et-tab'">
+                <a routerLink="/category">
                     <i class='bx bx-category et-icon' ></i>
                     <span class="et-tab-text">Category</span>
                 </a>
             </li>
-            <li class="et-tab">
-                <a routerLink="/mm-active" routerLinkActive="active">
+            <li [ngClass]="setActiveTabClass('/mm-active') ? 'et-active-tab' : 'et-tab'">
+                <a routerLink="/mm-active">
                     <i class='bx bx-calculator et-icon'></i>
                     <span class="et-tab-text">Active Tracker</span>
                 </a>
             </li>
-            <li class="et-tab">
-                <a routerLink="/mm-history" routerLinkActive="active">
-                    <i class='bx bx-history et-icon' ></i>
+            <li [ngClass]="setActiveTabClass('/mm-history') ? 'et-active-tab' : 'et-tab'">
+                <a routerLink="/mm-history">
+                    <i class='bx bx-hourglass et-icon'></i>
                     <span class="et-tab-text">History Tracker</span>
                 </a>
             </li>

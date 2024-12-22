@@ -1,1 +1,58 @@
-<p>budget works!</p>
+<div class="budget-container">
+  <div class="bud-header">
+      <div class="et-comp-title">
+        <!-- <i class='bx bx-money et-icon'></i> -->
+        <span>Budget</span>
+      </div>
+      
+      <!-- Dropdown -->
+      <div class="bud-fieldset">
+        <div class="dropdown">
+          <label>Year</label>
+        
+          <button class="dropdown-toggle" (click)="onYearDropdownClick($event)">
+            <i class='bx bx-calendar'></i>
+            <span class="label">{{budgetService.budgetArguments.year > 0 ? budgetService.budgetArguments.year : "Select a Year"}}</span>
+          </button>
+        
+          @if(showYearDropdown) {
+            <ul class="dropdown-menu">
+              <li class="dropdown-item" *ngFor="let year of years" (click)="onYearSelect(year)">
+                <span name="year">{{year}}</span>
+              </li>
+            </ul>
+          }
+        </div>
+        
+        <!-- Add/Edit button -->
+        <div class="fieldset-btns" [hidden]="!showBudgetFieldSetButtons">
+          @if(showAddButton) {
+            <button class="bud-button" (click)="onAddBtnClick()">
+              <i class='bx bx-plus'></i>
+            </button>
+          }
+        
+          @if(showEditButton) {
+            <button class="bud-button" (click)="onEditBtnClick()">
+              <i class='bx bx-edit-alt' ></i>
+            </button>
+          }
+        </div>
+      </div>
+  </div>
+  
+  <!-- A grid with tiles -->
+  <div class="bud-list">
+    <div class="bud-tile" *ngFor="let budget of budgetService.budgetsList">
+      <span class="bud-tile-metadata">
+        {{getMonthName(budget.month) + ", " + budgetService.budgetArguments.year}}
+      </span>
+      <span class="bud-tile-metadata bud-tile-budamount">
+        {{budget.budget}}
+      </span>
+      <span class="bud-tile-metadata">
+        {{budget.remarks}}
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 require('dotenv').config(); // To setup backend environment variables like PORT and CONNECTION_STR
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const expenseRoutes = require('./routes/expenseRoutes');
 const budgetRoutes = require('./routes/budgetRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
@@ -18,6 +19,7 @@ mongoose.connect(process.env.CONNECTION_STR)
 
 //app.use(express.static('public')); // Middleware to make some static files publicly available like styles, images, icons, etc.
 //app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 app.use(express.json()); // Middleware to parse any payload body
 app.use((req, res, next) => {
     console.log(req.path, req.method);

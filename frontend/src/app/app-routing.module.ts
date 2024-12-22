@@ -7,7 +7,7 @@ import { HistoryTrackerComponent } from '../components/historytracker/historytra
 import { HomeComponent } from '../components/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'budget', component: BudgetComponent },
   { path: 'category', component: CategoryComponent },
   { path: 'mm-active', component: ActiveTrackerComponent },

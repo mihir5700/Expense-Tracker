@@ -6,7 +6,7 @@
 
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Rozha+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Rozha+One&display=swap');
 
 /* You can add global styles to this file, and also import other style files */
 :root {
@@ -14,12 +14,13 @@
     --body-color: #eff6fd;
     --sidebar-color: white;
     --primary-color: #0075fe;
+    --secondary-color: #d7d7d7;
     --font-color: #141414;
     --border-color: rgba(0, 0, 0, 0.119);
     --toggle-color: #eff6fd;
 
-    /**/
-    --sidebar-width: 215px;
+    /* Widths */
+    --sidebar-width: 250px;
     
     /* Transitions */
     --tran-01: all 0.2s ease;
@@ -38,7 +39,7 @@
 html, body {
     height: 100%;
     background: var(--body-color);
-    font-family: "Public Sans", serif;
+    font-family: "Montserrat", serif;
 }
 
 .mm-app-container {
@@ -48,7 +49,8 @@ html, body {
 }
 
 .mm-app {
-    padding: 50px
+    padding: 30px;
+    width: 100%;
 }
 
 /* Side Navigation Bar */
@@ -74,15 +76,6 @@ html, body {
     border-radius: 20px;
 }
 
-/* .et-sidebar .et-header .et-user-box {
-    height: 60px;
-    width: 100%;
-    padding: 5px;
-    margin-left: 2px;
-    border: 0.2px solid var(--border-color);
-    border-radius: 20px;
-} */
-
 .et-sidebar .et-header .et-logo {
     display: flex;
     justify-content: start;
@@ -107,7 +100,7 @@ html, body {
     list-style: none;
 }
 
-.et-sidebar .et-tabs-list a {
+.et-sidebar .et-tabs-list a{
     height: 45px;
     font-size: 15px;
     border-radius: 10px;
@@ -115,7 +108,7 @@ html, body {
     align-items: center;
     justify-content: start;
     margin-top: 18px;
-    padding-left: 20px;
+    padding-left: 10px;
     text-decoration: none;
     color: var(--font-color);
 }
@@ -125,16 +118,208 @@ html, body {
     margin: 0px 10px;
 }
 
-.et-sidebar .et-tabs-list a:hover {
+#et-icon-history {
+    height: 20px;
+    width: 20px;
+    font-weight: bold;
+}
+
+.et-sidebar .et-tabs-list .et-tab a:hover {
     background: var(--body-color);
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.19);
     transition: var(--tran-04);
 }
 
-.et-sidebar .et-tabs-list a:active {
+.et-sidebar .et-tabs-list .et-active-tab a {
     background: var(--primary-color);
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 10px;
+    font-weight: 700;
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.19);
 }
 
+.et-sidebar .et-active-tab .et-icon {
+    font-size: 20px;
+    margin: 0px 10px;
+}
 
+/* Components Common Styles */
+.et-comp-title {
+    border-radius: 30px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.et-comp-title .et-icon {
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 50px;
+    font-weight: 800;
+}
+
+/* ----Budget Component---- */
+.dropdown {
+    display: flex;
+    align-items: center;
+    width: 350px;
+    padding: 20px
+}
+
+.dropdown label {
+    font-size: 15px;
+    margin-right: 18px;
+}
+
+/* Dropdown button */
+.dropdown-toggle {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-toggle:hover {
+    border-color: #bbb;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    position: absolute;
+    top: 85%;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    margin-left: 30px;
+    padding: 0;
+    list-style: none;
+    display: block;
+    z-index: 1000;
+}
+
+/* Dropdown items */
+.dropdown-item {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #f9f9f9;
+}
+
+.dropdown-item.active {
+    background-color: #ffe4e4;
+    color: #d9534f;
+}
+
+.dropdown-item .icon {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Arrow styling */
+.dropdown-toggle .arrow {
+    font-size: 12px;
+    margin-left: auto;
+}
+
+.bud-fieldset {
+    display: flex;
+    align-items: center;
+}
+
+.fieldset-btns {
+    display: flex;
+    width: 200px;
+}
+
+.fieldset-btns .bud-button {
+    margin: 0px 5px;
+    width: 36px;
+    font-size: 21px;
+    padding: 7px;
+    border: 0.2px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--sidebar-color);
+    display: flex;
+    align-items: center;
+}
+
+.budget-container {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    padding: 8px 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bud-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between tiles */
+    padding: 1rem;
+    margin: 15px 5px;
+    overflow-y: auto;
+}
+  
+/* Task Tile */
+.budget-container .bud-list .bud-tile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 18px;
+    padding: 30px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.budget-container .bud-list .bud-tile .bud-tile-budamount{
+    color: rgb(6, 193, 6);
+    font-size: 20px;
+}   
+
+.task-tile:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* width */
+.budget-container .bud-list::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgb(248, 248, 248);
+    border-radius: 10px;
+}
+
+/* Handle */
+.budget-container .bud-list::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 10px;
+}
+
+
+  
