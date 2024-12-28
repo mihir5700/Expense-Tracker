@@ -26,6 +26,11 @@ export class APIService {
         return this.http.put(`${this.baseUrl}/${endpoint}`, data);
     }
 
+    // PATCH request
+    patchData(endpoint: string, data: any): Observable<any> {
+        return this.http.patch(`${this.baseUrl}/${endpoint}`, data);
+    }
+
     // DELETE request
     deleteData(endpoint: string): Observable<any> {
         return this.http.delete(`${this.baseUrl}/${endpoint}`);

@@ -1,0 +1,17 @@
+<div class="et-modal-container" [hidden]="!isVisible" (click)="closeModal($event)">
+    <div class="et-modal-content" (click)="$event.stopPropagation()">
+        <!-- Header -->
+        <div class="et-modal-header" [hidden]="!showModalHeader">
+            <span>{{modalTitle}}</span>
+            <button class="bud-circular-btn" (click)="closeModal()">
+                <i class='bx bx-x'></i>
+            </button>
+        </div>        
+
+        <!-- Body -->
+        <div class="et-modal-body">
+            <ng-content></ng-content>
+        </div>
+        <!-- Footer -->
+    </div>
+</div>

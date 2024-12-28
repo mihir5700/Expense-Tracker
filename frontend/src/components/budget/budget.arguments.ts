@@ -4,4 +4,5 @@ export class BudgetArguments {
     public budget: number = 0;
     public remarks: string = "";
     public _id: string = "";
+    public iconPath: string = ""; //This is for internal purpose and not for saving
 }

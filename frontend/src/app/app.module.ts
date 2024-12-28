@@ -8,6 +8,7 @@ import { CategoryModule } from '../modules/category/category.module';
 import { ActiveTrackerModule } from '../modules/activetracker/activetracker.module';
 import { HistoryTrackerModule } from '../modules/historytracker/historytracker.module';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

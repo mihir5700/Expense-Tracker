@@ -15,44 +15,84 @@
             <span class="label">{{budgetService.budgetArguments.year > 0 ? budgetService.budgetArguments.year : "Select a Year"}}</span>
           </button>
         
-          @if(showYearDropdown) {
-            <ul class="dropdown-menu">
-              <li class="dropdown-item" *ngFor="let year of years" (click)="onYearSelect(year)">
-                <span name="year">{{year}}</span>
-              </li>
-            </ul>
-          }
+          <ul class="dropdown-menu" [hidden]="!showYearDropdown">
+            <li class="dropdown-item" *ngFor="let year of years" (click)="onYearSelect(year)">
+              <span name="year">{{year}}</span>
+            </li>
+          </ul>
         </div>
         
         <!-- Add/Edit button -->
         <div class="fieldset-btns" [hidden]="!showBudgetFieldSetButtons">
-          @if(showAddButton) {
-            <button class="bud-button" (click)="onAddBtnClick()">
-              <i class='bx bx-plus'></i>
-            </button>
-          }
-        
-          @if(showEditButton) {
-            <button class="bud-button" (click)="onEditBtnClick()">
-              <i class='bx bx-edit-alt' ></i>
-            </button>
-          }
+          <button id="bud-add-btn" [hidden]="!showAddButton" [ngClass]="setActiveBudBtnClass('I') ? 'bud-btn-active' : 'bud-button'" (click)="onAddBtnClick()">
+            <i class='bx bx-plus'></i>
+          </button>
+          <button [hidden]="!showEditButton" [ngClass]="setActiveBudBtnClass('U') ? 'bud-btn-active' : 'bud-button'" (click)="onEditBtnClick()">
+            <i class='bx bx-edit-alt'></i>
+          </button>
         </div>
       </div>
   </div>
   
   <!-- A grid with tiles -->
   <div class="bud-list">
-    <div class="bud-tile" *ngFor="let budget of budgetService.budgetsList">
-      <span class="bud-tile-metadata">
-        {{getMonthName(budget.month) + ", " + budgetService.budgetArguments.year}}
-      </span>
-      <span class="bud-tile-metadata bud-tile-budamount">
-        {{budget.budget}}
-      </span>
-      <span class="bud-tile-metadata">
-        {{budget.remarks}}
-      </span>
+    <div class="bud-tile" *ngFor="let budget of budgetService.budgetsList" (click)="onBudgetTileClick(budget, 'F')">
+      <div class="bud-tile-metadata" id="bud-tile-month">
+        <span class="bud-month-icon">
+          <img [src]="budget.iconPath" alt="">
+        </span>
+        <span>{{getMonthName(budget.month) + ", " + budget.year}}</span>
+      </div>
+      <div class="bud-tile-metadata bud-tile-budamount">
+        {{ budget.budget | currency:'INR':'symbol-narrow':'1.0-0' }}
+      </div>
+      <div class="bud-tile-metadata" id="bud-tile-remarks">
+        {{ budget.remarks | truncate }}
+      </div>
     </div>
   </div>
 </div>
+
+
+<et-modal #etModalComponent [modalTitle]="budgetModalTitle" (close)="closeModal()">
+  <form #budgetForm="ngForm" novalidate class="etFormDisplay">
+    <div class="form-group">
+      <label>Month</label>
+      <input type="text" 
+             class="form-control"
+             [value]="getMonthName(budgetService.budgetArguments.month)"
+             name="month" 
+             placeholder="Enter Month"
+             [disabled]="isMonthDisabled"
+             required/>
+    </div>
+    <div class="form-group">
+      <label>Budget</label>
+      <input type="number" 
+             class="form-control form-number-input"
+             [(ngModel)]="budgetService.budgetArguments.budget"
+             min="0" max="999999999999999999999"
+             name="budget"
+             #budget="ngModel" 
+             placeholder="Enter Budget"
+             required
+             [disabled]="isBudgetDisabled"
+             [class.is-valid]="budget.valid"
+             [class.is-invalid]="budget.invalid && budget.touched"/>
+    </div>
+    <div class="form-group">
+      <label>Remarks</label>
+      <textarea class="form-control" 
+                [(ngModel)]="budgetService.budgetArguments.remarks"
+                [disabled]="isRemarksDisabled"
+                name="remarks">
+      </textarea>
+    </div>
+
+    <button type="submit" *ngIf="showSaveButton" [disabled]="budgetForm.invalid" (click)="onSaveButtonClick()">
+      Save
+    </button>
+  </form>
+</et-modal>
+
+<et-messagebox #etMessageBox></et-messagebox>

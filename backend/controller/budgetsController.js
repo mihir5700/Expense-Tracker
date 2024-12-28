@@ -9,14 +9,17 @@ const getSelectedYearWiseBudgets = async (req, res) => {
         if(year == null || year == undefined || year <= 0)
             res.status(404).json({ error: "Year not found!" })
         else {
-            const fetchData = await Budget.find({ year: Number(year) }).select("month budget remarks").lean();
+            const fetchData = await Budget.find({ year: Number(year) })
+                                          .sort({ createdAt: -1 })
+                                          .select("_id year month budget remarks")
+                                          .lean();
             if(fetchData != null && fetchData != undefined && fetchData.length > 0)
-                res.status(200).json(fetchData);
+                res.status(200).json({"budgetList": fetchData});
             else
-                return res.status(200).json({"message":"No Data Records Found"});
+                return res.status(200).json({"message":"No Data Records Found", "budgetList": []});
         }
     }
-    catch(err) {
+    catch(err) {    
         console.log(err);
         return null;
     }
@@ -47,26 +50,26 @@ const createBudget = async (req, res) => {
     try {
         const budgetBody = new Budget(req.body) || {};
         if(budgetBody == null || budgetBody == undefined  || budgetBody == {})
-            res.status(404).json({ error: "Insufficient Parameters to create a budget!" });
+            res.status(404).json({ error: "Insufficient Parameters to create a budget!", "status":false });
         else {
             const duplicateDataExists = await validateDataExistence(budgetBody.year, budgetBody.month);
             if(duplicateDataExists)
-                res.status(200).json({"message": "Budget already exists for the given month and year"});
+                res.status(200).json({"message": "Budget already exists for the given month and year", "status":false });
             else{
                 const createResult = await Budget.create(budgetBody);
-                res.status(200).json(createResult);
+                res.status(200).json({"saveResult":createResult, "status": true});
             }
         }
     }
     catch (error) {
         if(error && error.message){
-            res.status(404).json({ error: error.message });
+            res.status(404).json({ error: error.message, "status": false });
         }
         else{
-            res.status(404).json({ error: "Failed to create a budget" });
+            res.status(404).json({ error: "Failed to create a budget", "status": false });
         }
     }
-}
+    }
 
 /**
  * Method to edit a budget
@@ -75,20 +78,20 @@ const editBudget = async (req, res) => {
     try {
         const budgetBody = new Budget(req.body) || {};
         if(budgetBody == null || budgetBody == undefined  || budgetBody == {})
-            res.status(404).json({ error: "Insufficient Parameters to update!" });
+            res.status(404).json({ error: "Insufficient Parameters to update!", "status": true });
         else {
             const updateResult = await Budget.findByIdAndUpdate(budgetBody._id.toString(), 
                                                                 {$set: {budget: Number(budgetBody.budget), remarks: String(budgetBody.remarks)}}, 
                                                                 {new: true});
-            res.status(200).json({updateResult});
+            res.status(200).json({"updateResult":updateResult, "status": true});
         }
     }
     catch(error) {
         if(error && error.message){
-            res.status(404).json({ error: error.message });
+            res.status(404).json({ error: error.message, "status": false });
         }
         else{
-            res.status(404).json({ error: "Failed to upate budget" });
+            res.status(404).json({ error: "Failed to upate budget", "status": false });
         }
     }
 }
