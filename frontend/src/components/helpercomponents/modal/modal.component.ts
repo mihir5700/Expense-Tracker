@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { HelperService } from '../../../services/helper.service';
 
 @Component({
     selector: 'et-modal',

@@ -1,8 +1,63 @@
-<div class="et-comp-title">
-    <span>Category</span>
+<div class="et-comp-container">
+    <div class="et-header">
+        <div class="et-comp-title">
+            <span>Category</span>
+            <div class="et-fieldset">
+                <button id="cat-add-btn" [ngClass]="setActiveBtnClass('I') ? 'et-btn-active' : 'et-button'"
+                    (click)="onAddBtnClick()">
+                    <i class='bx bx-plus'></i>
+                    <b>Add</b>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bud-list">
+        <div class="bud-tile" *ngFor="let category of categoryService.categoriesList">
+            <div class="bud-tile-metadata" [style.color]="'var(--primary-color)'" [style.font-size]="'18px'">
+                {{ category.category }}
+            </div>
+            <div class="bud-tile-metadata" id="bud-tile-remarks" [style.width]="'360px'">
+                {{ category.remarks | truncate }}
+            </div>
+            
+
+            <div class="tile-btns">
+                <a class="tile-btn" (click)="onEditButtonClick($event, category)">
+                    <i class='bx bx-edit-alt'></i>
+                </a>
+                <a class="tile-btn" (click)="onDeleteButtonClick($event, category)">
+                    <i class='bx bx-trash'></i>
+                </a>
+                <a class="tile-btn" (click)="onCategoryTileClick(category, 'F')">
+                    <img src="assets/images/eye.svg" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- Dropdown -->
-<!-- Add button -->
-<!-- Edit button -->
-<!-- A grid with tiles -->
+<et-modal #etModalComponent [modalTitle]="categoryModalTitle" (close)="closeModal()">
+    <form #categoryForm="ngForm" novalidate class="etFormDisplay">
+        <div class="form-group">
+            <label>Category</label>
+            <input type="text" class="form-control"
+                [(ngModel)]="categoryService.categoryArguments.category" minlength="1" name="category"
+                #category="ngModel" placeholder="Enter a category" required [disabled]="isCategoryDisabled"
+                [class.is-valid]="category.valid" [class.is-invalid]="category.invalid && category.touched" />
+        </div>
+        <div class="form-group">
+            <label>Remarks</label>
+            <textarea class="form-control" [(ngModel)]="categoryService.categoryArguments.remarks"
+                [disabled]="isRemarksDisabled" name="remarks">
+      </textarea>
+        </div>
+
+        <button type="submit" *ngIf="showSaveButton" [disabled]="categoryForm.invalid" (click)="onSaveButtonClick()">
+            Save
+        </button>
+    </form>
+</et-modal>
+
+<et-messagebox #etMessageBox (onConfirmBoxButtonClick)="onConfirmBoxBtnClick($event)">
+</et-messagebox>

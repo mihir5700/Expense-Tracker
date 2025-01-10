@@ -17,6 +17,7 @@
     --primary-color: #0075fe;
     --linear-gradient-primary-color: linear-gradient(135deg, #00d2ff, #0075fe);
     --secondary-color: #d7d7d7;
+    --dead-color: rgb(232, 226, 226); 
     --font-color: #141414;
     --border-color: rgba(0, 0, 0, 0.119);
     --danger-color: #e62444;
@@ -161,8 +162,10 @@ html, body {
     padding: 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     font-size: 40px;
     font-weight: 800;
+    width: 100%;
 }
 
 .et-comp-title .et-icon {
@@ -173,12 +176,12 @@ html, body {
     font-weight: 800;
 }
 
+
 /* ----Budget Component---- */
 .dropdown {
     display: flex;
     align-items: center;
     width: 350px;
-    padding: 20px
 }
 
 .dropdown label {
@@ -222,7 +225,7 @@ html, body {
     border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-top: 5px;
-    margin-left: 30px;
+    margin-left: -22px;
     padding: 0;
     list-style: none;
     display: block;
@@ -260,23 +263,22 @@ html, body {
     margin-left: auto;
 }
 
-.bud-fieldset {
+.et-fieldset {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
-.fieldset-btns {
+.et-fieldset {
     display: flex;
-    width: 200px;
 }
 
-.fieldset-btns .bud-button, .bud-tile .bud-button {
+.et-fieldset .et-button, .et-fieldset .et-btn-active {
     margin: 0px 5px;
-    width: 36px;
-    height: 36px;
-    font-size: 22px;
+    width: 80px;
+    height: 40px;
     border: 0.2px solid var(--border-color);
-    border-radius: 50%;
+    border-radius: 5px;
     background: var(--primary-color);
     color: var(--light-color);
     display: flex;
@@ -284,17 +286,27 @@ html, body {
     justify-content: center;
 }
 
-.fieldset-btns .bud-button:hover, .bud-tile .bud-button:hover {
+.et-fieldset .et-button b, .et-fieldset .et-btn-active b {
+    margin: 3px 5px 2px 3px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.category-fieldset {
+    margin: 15px;
+}
+
+.et-fieldset .et-button:hover, .et-button:hover, .bud-tile .et-button:hover {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.797);
 }
 
-.fieldset-btns .bud-btn-active {
+.et-fieldset .et-btn-active {
     margin: 0px 5px;
-    width: 36px;
-    font-size: 22px;
+    width: 80px;
+    height: 40px;
     padding: 7px;
     border: 0.2px solid var(--border-color);
-    border-radius: 50%;
+    border-radius: 5px;
     background: var(--primary-color);
     color: var(--light-color);
     display: flex;
@@ -304,10 +316,45 @@ html, body {
 }
 
 #bud-add-btn {
-    font-size: 24px;
+    font-size: 16px;
 }
 
-.budget-container {
+#cat-add-btn {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px;
+}
+
+.tile-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tile-btn {
+    border-style: none;
+    margin:10px;
+}
+
+.tile-btn img, .tile-btn svg {
+    height: 24px;
+    width: 24px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.tile-btn i {
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.tile-btn i:hover, .tile-btn img:hover, .tile-btn svg:hover {
+    transform: scale(1.1);
+}
+
+.et-comp-container {
     background-color: white;
     height: 100%;
     width: 100%;
@@ -327,30 +374,32 @@ html, body {
 }
   
 /* Task Tile */
-.budget-container .bud-list .bud-tile {
+.et-comp-container .bud-list .bud-tile {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: white;
     border-radius: 18px;
-    padding: 20px 40px;
+    padding: 18px;
+    padding-left: 30px;
     border: 1px solid var(--secondary-color);
     box-shadow: 1px 3px 0px var(--secondary-color);
     transition: box-shadow 0.3s ease;
     font-size: 15px;
     font-weight: 600;
+    width: 100%;
+    height: 70px;
 }
 
-.budget-container .bud-list .bud-tile:hover {
-    cursor: pointer;
+.et-comp-container .bud-list .bud-tile:hover {
     border: 1px solid var(--primary-color);
     box-shadow: 1px 3px 0px var(--primary-color);
     background: var(--toggle-color);
 }
 
-.budget-container .bud-list .bud-tile .bud-tile-budamount{
+.et-comp-container .bud-list .bud-tile .bud-tile-budamount{
     color: var(--success-color);
-    font-size: 20px;
+    font-size: 19px;
 }
 
 .bud-tile-metadata {
@@ -367,10 +416,17 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: start;
+    width: 220px;
 }
 
 #bud-tile-remarks {
-    width: 250px;
+    width: 300px;
+}
+
+.bud-tile-btns-set {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .task-tile:hover {
@@ -378,14 +434,14 @@ html, body {
 }
 
 /* width */
-.budget-container .bud-list::-webkit-scrollbar, .dropdown-menu::-webkit-scrollbar {
+.et-comp-container .bud-list::-webkit-scrollbar, .dropdown-menu::-webkit-scrollbar {
     width: 10px;
     background-color: rgb(248, 248, 248);
     border-radius: 10px;
 }
 
 /* Handle */
-.budget-container .bud-list::-webkit-scrollbar-thumb, .dropdown-menu::-webkit-scrollbar-thumb {
+.et-comp-container .bud-list::-webkit-scrollbar-thumb, .dropdown-menu::-webkit-scrollbar-thumb {
     background: var(--secondary-color);
     border-radius: 10px;
 }
@@ -411,6 +467,14 @@ html, body {
 
 .et-msg-modal-container.msg-danger {
     background-color: #37030c6e
+}
+
+.et-msg-modal-container.msg-warning {
+    background-color: #302d0489
+}
+
+.et-msg-modal-container.msg-info {
+    background-color: #08294f92
 }
 
 .et-modal-content, .et-msg-modal-content {
@@ -644,5 +708,48 @@ input::-webkit-inner-spin-button {
     align-items: center;
     text-align: center;
     justify-content: center;
+}
+
+/* Confirm Box */
+.confirm-box-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.confirm-box-buttons .confirm-box-btn {
+    border: none;
+    height: 40px;
+    width: 180px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 11px;
+    padding: 5px;
+}
+
+.confirm-box-buttons .confirm-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.confirm-box-buttons .cancel-btn {
+    background-color: var(--dead-color);
+    color: var(--font-color);
+}
+
+.confirm-box-buttons .cancel-btn:hover{
+    color: var(--font-color);
+}
+
+.confirm-box-buttons .confirm-box-btn:hover {
+    box-shadow: var(--btn-hover-shadow);
+}
+
+.confirm-box-buttons .confirm-box-btn:disabled {
+    opacity: 0.5; /* Visually indicate the disabled state */
+    cursor: not-allowed;
+    box-shadow: 0 0 4px 1px #0077fe81;
 }
 

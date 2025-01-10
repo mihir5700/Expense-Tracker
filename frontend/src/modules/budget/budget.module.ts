@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BudgetComponent } from '../../components/budget/budget.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -9,16 +9,13 @@ import { DatePipe } from '@angular/common';
 import { HelperService } from '../../services/helper.service';
 import { HelperComponentsModule } from '../helpercomponents/helpercomponents.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { TruncatePipe } from '../../pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
-    BudgetComponent,
-    TruncatePipe
+    BudgetComponent
   ],
   exports: [
-    BudgetComponent,
-    TruncatePipe
+    BudgetComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +24,7 @@ import { TruncatePipe } from '../../pipes/truncate.pipe';
     BrowserModule
   ],
   bootstrap: [BudgetComponent],
-  providers: [provideHttpClient(withFetch()), APIService, BudgetService, DatePipe, HelperService],
+  providers: [provideHttpClient(withFetch()), APIService, BudgetService, DatePipe, HelperService, CurrencyPipe],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 
